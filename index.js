@@ -2,8 +2,17 @@ const express = require('express');
 const { dirname } = require('path');
 require('dotenv').config();
 const path = require('path');
+const db = require('./dbconnection');
 
 const app = express();
+
+db.connect((err) =>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log("connected to database");
+    } 
+})
 
 app.get("/api/post",(req,res) => {
     res.json({"id":1,"content":"Good Morning!"})
